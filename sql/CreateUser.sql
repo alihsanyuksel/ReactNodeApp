@@ -1,4 +1,5 @@
-create user 'books'@'localhost' identified by 'hello';
+create user 'books'@'localhost' IDENTIFIED WITH mysql_native_password by 'hello';
+grant all on books.* to 'books'@'localhost';
 
 drop user 'books'@'localhost';
 

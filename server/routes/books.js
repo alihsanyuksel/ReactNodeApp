@@ -1,13 +1,35 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
 
-const db = require('../config/db');
+const mysql = require('mysql');
 
-console.log(db.user, db.password);
+const router = express.Router();
+
+const connectionPool = require('../database/connection-pool')
+
+
+
 
 /* GET books listing. */
 router.get('/', function(req, res, next) {
+ 
+    const book = {
+      'author': 'Charles Dickens',
+      'title': 'Great Expectations',
+      'published': '1975-02-03'
+    };
+
+    connectionPool.getPool().query('insert into books set ?', book, (err, result) =>{
+      if(err) throw err;
+
+      console.log(result); 
+    });
+  
+  
+
+
+
   res.send('books');
 });
+
 
 module.exports = router;
