@@ -6,24 +6,23 @@ const router = express.Router();
 
 const connectionPool = require('../database/connection-pool')
 
+router.post('/', function(req, res){
+    console.log('post body', req.body);
 
 
-
-/* GET books listing. */
-router.get('/', function(req, res, next) {
- 
-    const book = {
-      'author': 'Charles Dickens',
-      'title': 'Great Expectations',
-      'published': '1975-02-03'
-    };
-
-    connectionPool.getPool().query('insert into books set ?', book, (err, result) =>{
+    connectionPool.getPool().query('insert into books set ?', req.body, (err, result) =>{
       if(err) throw err;
 
       console.log(result); 
     });
   
+} )
+
+
+/* GET books listing. */
+router.get('/', function(req, res, next) {
+ 
+    
   
 
 
