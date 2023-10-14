@@ -3,14 +3,14 @@
 const axios = require('axios');
 
 const book = {
-    'author': 'Ali İhsan ',
-    'title': 'ZOZOKA',
+    'author': 'BAli İhsan ',
+    'title': 'coZOKA',
     'published': '2022-02-03'
   };
 
-axios.post('http://localhost:3000/books', book)
+axios.delete('http://localhost:3000/books/250')
 .then(response =>{
-    console.log(error);
+    console.log(response);
 })
 .catch(error =>{
     console.log(error);
