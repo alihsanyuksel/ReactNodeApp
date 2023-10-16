@@ -1,5 +1,5 @@
 import React from 'react';
-import Book from './Book';
+import BookLibrary from './BookLibrary';
 import './App.css';
 
 
@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div className="App">
-      <Book />
+      <BookLibrary />
     </div>
   );
 }

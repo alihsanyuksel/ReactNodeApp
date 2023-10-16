@@ -2,8 +2,11 @@ import React from 'react';
 import './Book.css';
 
 function Book(){
+
+    console.log('server url', process.env.REACT_APP_SERVER_URL);
+
     return(
-        <div id='book-message'>Hellllllo Im a book</div>
+        <div id='book-message'>Hellllladflo Im a book</div>
     );
 }
 
