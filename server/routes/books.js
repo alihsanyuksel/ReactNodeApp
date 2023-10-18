@@ -47,12 +47,12 @@ router.delete('/:id', function(req, res){
 
 //save a book
 router.post('/', function(req, res){
-
+    console.log(req.body);
     repository.save(req.body, (err, result) => {
       if(err) {
         res.status(500).json({'error': err.toString()});
       }else {
-        res.status(200);
+        res.sendStatus(200);
       }
     });
   

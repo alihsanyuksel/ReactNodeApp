@@ -13,12 +13,13 @@ function App() {
     <Router>
     <div className="App">
       <Header />
-
+      
       <Routes>
-      <Route exact path="/" element={<BookLibrary />}></Route>
+      <Route path="/" element={<BookLibrary />}></Route>
       <Route path="/create" element={<Book />}></Route>
       </Routes>
     </div>
+    
     </Router>
   );
 }
