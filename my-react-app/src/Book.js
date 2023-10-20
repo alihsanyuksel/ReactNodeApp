@@ -2,6 +2,7 @@ import React from 'react';
 import './Book.css';
 import axios from 'axios';
 import {Navigate} from "react-router-dom";
+import FlashMessage from './FlashMessage';
 
 class Book extends React.Component{
 
@@ -27,6 +28,7 @@ class Book extends React.Component{
             author: "",
             title: "",
             published: "",
+            submitAttempt: 0
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -41,19 +43,11 @@ class Book extends React.Component{
             const value = this.state[field];
             
             if (!rule.test(value)) {
-                this.showMessage(message);
+                this.setState({message: message, submitAttempt: this.state.submitAttempt + 1});
                 return false;
             }
         }
         return true;
-    }
-
-    showMessage(message){
-        this.setState({message: message});
-
-        setTimeout(()=> {
-            this.setState({message: ""});
-        }, 3000)
     }
 
 
@@ -109,7 +103,8 @@ class Book extends React.Component{
                     <label htmlFor='published'>Published:</label>
                     <input value={this.state.published} onChange={this.handleChange} type="text" name="published" id="published"/>
                     <input type="submit" value="Save"/>
-                    <div className="message">{this.state.message}</div>
+                    <FlashMessage key={this.state.submitAttempt} message={this.state.message} duration="3000"/>
+                    
                 </form>
             </div>
         );
