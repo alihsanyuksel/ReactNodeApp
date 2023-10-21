@@ -3,6 +3,7 @@ import axios from "axios";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './BookLibrary.css';
+import {Link} from 'react-router-dom'
 
 class BookLibrary extends React.Component {
 
@@ -33,7 +34,7 @@ class BookLibrary extends React.Component {
                 <td>{book.author}</td>
                 <td>{book.title}</td>
                 <td>{date}</td>
-                <td><EditIcon /></td>
+                <td><Link to={'/edit/' + book.id}><EditIcon /></Link></td>
                 <td><DeleteIcon /></td>
             </tr>)
         });

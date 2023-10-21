@@ -10,6 +10,11 @@ th {
     padding-bottom: 1em;
 }
 
+td {
+    word-wrap: break-word;
+    max-width: 300px;
+}
+
 td:nth-child(1) {
     font-weight: 700;
 }
