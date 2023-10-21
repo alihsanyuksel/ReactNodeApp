@@ -40,7 +40,7 @@ router.delete('/:id', function(req, res){
     if(err) {
       res.status(500).json({'error': err.toString()});
     }else {
-      res.status(200);
+      res.sendStatus(200);
     }
   });
 });

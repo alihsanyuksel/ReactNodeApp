@@ -3,7 +3,7 @@ import axios from "axios";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './BookLibrary.css';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 
 class BookLibrary extends React.Component {
 
@@ -13,14 +13,34 @@ class BookLibrary extends React.Component {
         this.state = {
             books: [],
         };
+
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
 
     componentDidMount(){
+        this.refresh();
+        
+    }
 
+    refresh() {
         axios(process.env.REACT_APP_SERVER_URL)
-            .then(result => this.setState({books: result.data}))
+            .then(result => {
+                this.setState({ books: result.data }, () => {
+                    console.log("State updated:", this.state.books);
+                });
+            })
             .catch(error => console.log(error));
+    }
+
+    handleDelete(id) {
+        axios.delete(process.env.REACT_APP_SERVER_URL + '/' + id)
+        .then(result => {
+             this.refresh();
+        })
+        .catch(error => {
+            console.log(error);
+        })
     }
 
 
@@ -35,10 +55,9 @@ class BookLibrary extends React.Component {
                 <td>{book.title}</td>
                 <td>{date}</td>
                 <td><Link to={'/edit/' + book.id}><EditIcon /></Link></td>
-                <td><DeleteIcon /></td>
+                <td><Link onClick = {() => {if(window.confirm("deeelete?")) this.handleDelete(book.id)}} to='/'><DeleteIcon /></Link></td>
             </tr>)
         });
-        console.log('render', this.state.books); 
         return (
         <div>
             <table>
