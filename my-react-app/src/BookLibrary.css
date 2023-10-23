@@ -1,28 +1,14 @@
-table {
-    border-spacing: 3em 1em;
+.library-message {
+    text-align: center;
     margin-top: 3em;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 2.5em;
 }
 
-th {
-    text-align: left;
-    padding-bottom: 1em;
-}
+.book-library .message {
+font-weight: bold;
+height: 2em;
+color: red;
+text-align: center;
+margin-top: 1em;
 
-td {
-    word-wrap: break-word;
-    max-width: 300px;
-}
-
-td:nth-child(1) {
-    font-weight: 700;
-}
-
-td:nth-child(2) {
-    font-style: italic;
-}
-
-svg {
-    color: rgba(28, 60, 190, 0.759);
 }

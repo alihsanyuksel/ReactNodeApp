@@ -39,7 +39,7 @@ export function withRouter(Children){
             author: "",
             title: "",
             published: "",
-            submitAttempt: 0
+            warningCount: 0
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -62,8 +62,13 @@ export function withRouter(Children){
                 });
             })
             .catch(error => {
-                console.log(error);
+                this.warning("Unable to load book");
             })
+    }
+
+
+    warning(message) {
+        this.setState({message: message, warningCount: this.state.warningCount + 1});
     }
 
     validate() {
@@ -74,7 +79,7 @@ export function withRouter(Children){
             const value = this.state[field];
             
             if (!rule.test(value)) {
-                this.setState({message: message, submitAttempt: this.state.submitAttempt + 1});
+                this.warning(message);
                 return false;
             }
         }
@@ -112,7 +117,8 @@ export function withRouter(Children){
             .then(result => {
                 this.setState({created: true});
             })
-            .catch(error => {console.log(error);
+            .catch(error => {
+                this.warning("Unable to save");
             });
 
     }
@@ -143,7 +149,7 @@ export function withRouter(Children){
                     <label htmlFor='published'>Published:</label>
                     <input value={this.state.published} onChange={this.handleChange} type="text" name="published" id="published"/>
                     <input type="submit" value="Save"/>
-                    <FlashMessage key={this.state.submitAttempt} message={this.state.message} duration="3000"/>
+                    <FlashMessage key={this.state.warningCount} message={this.state.message} duration="3000"/>
                     
                 </form>
             </div>
